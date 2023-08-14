@@ -103,3 +103,23 @@ int main(){
     return 0;
 }
 ```
+
+# 포인터: 메모리 주소를 담는 타입
+
+`&변수`: 변수의 메모리 주소
+
+`int * 변수 = &i`: \*(에스터리스크, asterisk operator)와 함꼐 메모리 주소를 저장 가능. 이 때 변수가 '포인터'. (타입을 동일하게 해줘야 할 듯)
+
+## 역참조
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    string a = "hello";
+    string * b = &a;
+    cout << b << "\n";
+    cout << *b << "\n";
+    return 0;
+}
+```

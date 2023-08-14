@@ -1,27 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main() {
-    int a;
-    double b;
-    char c;
-    // 받는 변수에는 &가 필요
-    scanf("%d %lf %c", &a, &b,&c); // scanf(형식, ...받는 인풋들)
-    printf("%d ",a); 
-    printf("%lf ",b);
-    printf("%c",c);
-    
-    cout << "\n";
-   
-    // scanf로 실수타입을 정수 타입으로 받아보기
-    int e, f;
-    scanf("%d.%d", &e, &f);
-    printf("%d.%d이 분리되어 %d와 %d로!", e,f,e,f);
-    
-    cout << "\n";
+    // 포인터와 역참조란
+    string a = "hello";
+    string * b = &a;
+    cout << b << "\n"; 
+    cout << *b << "\n";
 
-    string g;
-    // 개행 문자까지 한 번에 받기
-    getline(cin, g);
-    cout << g << "\n";
-    return 0;
+    // array to pointer decay: 배열의 이름(변수)를 포인터에 할당하면 크기 정보 사라지고(decay) 첫 번째 요소의 주소가 바인딩됨
+    // vector는 안돼용
+    int d[3] = {1, 2, 3};
+    int * c = d;
+    cout << c << "\n"; // 배열의 첫 번째 요소의 메모리 주소
+    cout << &d[0] << "\n"; // c와 같은 결과
+    cout << c + 1 << "\n";
+    cout << &d[1] << "\n";
+    return 0; 
 }
