@@ -1,44 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
-// 일반 배열의 경우: 메서드 지원 X
 int main() {
-    int a[] = {1,2,3};
-    do{
-        for(int i: a) cout << i << " ";
-        cout << "\n";
-    }while(next_permutation(&a[0], &a[0]+3));
-    // }while(next_permutation(a, a+3))
+    int a;
+    double b;
+    char c;
+    // 받는 변수에는 &가 필요
+    scanf("%d %lf %c", &a, &b,&c); // scanf(형식, ...받는 인풋들)
+    printf("%d ",a); 
+    printf("%lf ",b);
+    printf("%c",c);
+    
+    cout << "\n";
+   
+    // scanf로 실수타입을 정수 타입으로 받아보기
+    int e, f;
+    scanf("%d.%d", &e, &f);
+    printf("%d.%d이 분리되어 %d와 %d로!", e,f,e,f);
+    
+    cout << "\n";
+
+    string g;
+    // 개행 문자까지 한 번에 받기
+    getline(cin, g);
+    cout << g << "\n";
+    return 0;
 }
-
-// // 벡터의 경우: begin, end 메서드 지원
-// int main() {
-//     vector<int> a = {1,2,3};
-//     do{
-//         for(int i: a) cout << i << " ";
-//         cout << "\n";
-//     }while(next_permutation(a.begin(), a.end()));
-// }
-
-// // 꼭 오름차순으로 정렳한 상태에서 진행: sort 메서드
-// int main() {
-//     vector<int> a = {2,1,3,100,200};
-//     sort(a.begin(), a.end()); // 오름차순 정렬
-//     do{
-//         for(int i: a) cout << i << " ";
-//         cout << "\n";
-//     }while(next_permutation(a.begin(), a.end()));
-// }
-
-// // 응용: 순서 상관 있게 2개를 뽑아라
-// int main ( ) {
-//     vector<int> a = {2,1,3,100,200};
-//     sort(a.begin(), a.end());
-//     do{
-//         for(int i = 0; i < 2; i++) {
-//             cout << a[i] << " ";
-//         }
-//             cout << " \n";
-//     }while(next_permutation(a.begin(), a.end()));
-// }
-
-// 공식: nPr = n!/(n-r)!
