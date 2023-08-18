@@ -1,19 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
+int a[10];
+int b[10][10];
 int main() {
-    // 포인터와 역참조란
-    string a = "hello";
-    string * b = &a;
-    cout << b << "\n"; 
-    cout << *b << "\n";
+    fill(&a[0], &a[10], 100);
+    for (int i = 0; i < 10; i++) {
+        cout << a[i] << " ";
+    }
+    cout << "\n";
 
-    // array to pointer decay: 배열의 이름(변수)를 포인터에 할당하면 크기 정보 사라지고(decay) 첫 번째 요소의 주소가 바인딩됨
-    // vector는 안돼용
-    int d[3] = {1, 2, 3};
-    int * c = d;
-    cout << c << "\n"; // 배열의 첫 번째 요소의 메모리 주소
-    cout << &d[0] << "\n"; // c와 같은 결과
-    cout << c + 1 << "\n";
-    cout << &d[1] << "\n";
-    return 0; 
+    fill(&b[0][0], &b[9][10], 2);
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            cout << b[i][j] << " ";
+        }
+        cout << "\n";
+    }
+    cout << "hello"
+         << "\n";
+    return 0;
 }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// int a[10];
+// int b[10][10];
+// int main() {
+//     fill(a, a + 10, 100);
+//     for (int i = 0; i < 10; i++) {
+//         cout << a[i] << " ";
+//     }
+//     cout << "\n";
+//     fill(&b[0][0], &b[0][0] + 10 * 10, 2);
+//     for (int i = 0; i < 10; i++) {
+//         for (int j = 0; j < 10; j++) {
+//             cout << b[i][j] << " ";
+//         }
+//         cout << "\n";
+//     }
+//     return 0;
+// }
