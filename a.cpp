@@ -1,42 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
-int a[10];
-int b[10][10];
+const int MAX_N = 50;
+int a[MAX_N];
+int b[MAX_N][MAX_N];
 int main() {
-    fill(&a[0], &a[10], 100);
-    for (int i = 0; i < 10; i++) {
+    memset(a, -1, sizeof(a));
+    memset(b, 0, sizeof(b));
+    for (int i = 0; i < MAX_N; i++)
         cout << a[i] << " ";
-    }
     cout << "\n";
-
-    fill(&b[0][0], &b[9][10], 2);
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
+    for (int i = 0; i < MAX_N; i++) {
+        for (int j = 0; j < MAX_N; j++) {
             cout << b[i][j] << " ";
         }
         cout << "\n";
     }
-    cout << "hello"
-         << "\n";
     return 0;
 }
-
-// #include <bits/stdc++.h>
-// using namespace std;
-// int a[10];
-// int b[10][10];
-// int main() {
-//     fill(a, a + 10, 100);
-//     for (int i = 0; i < 10; i++) {
-//         cout << a[i] << " ";
-//     }
-//     cout << "\n";
-//     fill(&b[0][0], &b[0][0] + 10 * 10, 2);
-//     for (int i = 0; i < 10; i++) {
-//         for (int j = 0; j < 10; j++) {
-//             cout << b[i][j] << " ";
-//         }
-//         cout << "\n";
-//     }
-//     return 0;
-// }
