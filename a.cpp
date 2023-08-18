@@ -1,39 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main() {
-    // unique: 앞 요소부터 바로 옆과 비교하여 중복 부분만 제거하면서 채워나가고,
-    // 나머지 자리에는 기존의 원소가 채워진다.
-    //
-    // unique(start, end) => 유니크한 요소 바로 다음 기존과 동일한 요소의 시작
+    // 정렬된 배열에서 어떤 값이 나오는 첫 번째 지점 혹은 초과하는 지점의 위치를
+    // 찾으려면
+    // lower_bound(처음, 끝, 찾는 값): 어떤 값이 나오는 첫 번째 지점
     // 이터레이터 반환
-    //
-    // O(n)
-    //
-    // vector.erase(시작, 끝): [시작, 끝) 범위가 삭제 이 두 함수를 통해 유니크한
-    // 벡터를 반환할 수 있다.
-    //
-    // unique는 바로 옆이랑만 비교하므로, 꼭 sort()로 정리한 후 시작하자.
-
-    // sort를 사용하지 않았을 때
-    vector<int> v1{4, 3, 3, 5, 1, 2, 3};
-    cout << "원본\n";
-    for (int i : v1)
+    // upper_bound(처음, 끝, 찾는 값): 어떤 값이 초과하는 첫
+    // 번째 지점 이터레이터 반환
+    vector<int> v{1, 3, 5, 3, 2, 2, 5};
+    sort(v.begin(), v.end());
+    cout << "정렬된 배열"
+         << "\n";
+    for (int i : v)
         cout << i << " ";
     cout << "\n";
-    v1.erase(unique(v1.begin(), v1.end()), v1.end());
-    cout << "sort를 사용하지 않는다면\n";
-    for (int i : v1)
-        cout << i << " ";
-    cout << "\n";
-    // sort 후
-    // v.erase(unique(v.begin(), v.end()), v.end());
-    vector<int> v2{4, 3, 3, 5, 1, 2, 3};
-    sort(v2.begin(), v2.end());
-    v2.erase(unique(v2.begin(), v2.end()), v2.end());
-    cout << "sort를 사용한다면\n";
-    for (int i : v2)
-        cout << i << " ";
-    cout << "\n";
-
+    cout << lower_bound(v.begin(), v.end(), 3) - v.begin() << "\n";
+    cout << upper_bound(v.begin(), v.end(), 3) - v.begin() << "\n";
     return 0;
+    // 정렬된 배열
+    // 1 2 2 3 3 5 5
+    // 3
+    // 5
 }
