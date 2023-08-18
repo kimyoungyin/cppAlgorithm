@@ -162,81 +162,119 @@ int main() {
 
 # 함수: 코딩 테스트에 자주 나오는
 
--   `fill()`과 `memset()`: 배열 초기화. `fill()`을 주로 사용
+##   `fill()`과 `memset()`: 배열 초기화. `fill()`을 주로 사용
+-  `fill()`: 모든 숫자로 초기화 가능, O(n)
 
-    -  `fill()`: 모든 숫자로 초기화 가능, O(n)
+    -   메모리 주소로 초기화하기
 
-        -   메모리 주소로 초기화하기
-
-            ```cpp
-            #include <bits/stdc++.h>
-            using namespace std;
-            int a[10];
-            int b[10][10];
-            int main() {
-                // void fill(시작 메모리 주소, 끝+1 메모리 주소, 초기화 값)
-                fill(&a[0], &a[10], 100);
-
-                for(int i = 0; i < 10; i++){
-                    cout << a[i] " ";
-                }
-                cout << "\n";
-                fill(&b[0][0], &b[9][10], 2);
-                for (int i = 0; i < 10; i++){
-                    for (int j = 0; j < 10; j++){
-                        cout << b[i][j] << " ";
-                    }
-                    cout << "\n";
-                }
-                return 0;
-            }
-            ```
-
-        -   배열의 이름(배열 시작 주소)으로 시작하기: 1차원 배열만 가능(2차원은 불가)
-            ```cpp
-            #include <bits/stdc++.h>
-            using namespace std;
-            int a[10];
-            int b[10][10];
-            int main() {
-                fill(a, a + 10, 100);
-                for (int i = 0; i < 10; i++) {
-                    cout << a[i] << " ";
-                }
-                cout << "\n";
-                fill(&b[0][0], &b[0][0] + 10 * 10, 2);
-                for (int i = 0; i < 10; i++) {
-                    for (int j = 0; j < 10; j++) {
-                        cout << b[i][j] << " ";
-                    }
-                    cout << "\n";
-                }
-                return 0;
-            }
-            ```
-        > 주의: 배열의 크기보다 작은 정사각형 요소만 초기화 할 수 없다. 
-        > 
-        >1열 => 2열 => 3열 순으로 초기화가 진행되기 때문에!
-    -   `memset()`: 0, -1, char으로만 초기화 가능
         ```cpp
         #include <bits/stdc++.h>
         using namespace std;
-        const int MAX_N = 50;
-        int a[MAX_N];
-        int b[MAX_N][MAX_N];
+        int a[10];
+        int b[10][10];
         int main() {
-            // void(배열 이름, 초기화 값, sizeof(배열 이름));
-            memset(a, -1, sizeof(a));
-            memset(b, 0, sizeof(b));
-            for (int i = 0; i < MAX_N; i++)
-                cout << a[i] << " ";
+            // void fill(시작 메모리 주소, 끝+1 메모리 주소, 초기화 값)
+            fill(&a[0], &a[10], 100);
+
+            for(int i = 0; i < 10; i++){
+                cout << a[i] " ";
+            }
             cout << "\n";
-            for (int i = 0; i < MAX_N; i++) {
-                for (int j = 0; j < MAX_N; j++) {
+            fill(&b[0][0], &b[9][10], 2);
+            for (int i = 0; i < 10; i++){
+                for (int j = 0; j < 10; j++){
                     cout << b[i][j] << " ";
                 }
                 cout << "\n";
             }
             return 0;
-        }               
+        }
         ```
+
+    -   배열의 이름(배열 시작 주소)으로 시작하기: 1차원 배열만 가능(2차원은 불가)
+        ```cpp
+        #include <bits/stdc++.h>
+        using namespace std;
+        int a[10];
+        int b[10][10];
+        int main() {
+            fill(a, a + 10, 100);
+            for (int i = 0; i < 10; i++) {
+                cout << a[i] << " ";
+            }
+            cout << "\n";
+            fill(&b[0][0], &b[0][0] + 10 * 10, 2);
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    cout << b[i][j] << " ";
+                }
+                cout << "\n";
+            }
+            return 0;
+        }
+        ```
+    > 주의: 배열의 크기보다 작은 정사각형 요소만 초기화 할 수 없다. 
+    > 
+    >1열 => 2열 => 3열 순으로 초기화가 진행되기 때문에!
+-   `memset()`: 0, -1, char으로만 초기화 가능
+    ```cpp
+    #include <bits/stdc++.h>
+    using namespace std;
+    const int MAX_N = 50;
+    int a[MAX_N];
+    int b[MAX_N][MAX_N];
+    int main() {
+        // void(배열 이름, 초기화 값, sizeof(배열 이름));
+        memset(a, -1, sizeof(a));
+        memset(b, 0, sizeof(b));
+        for (int i = 0; i < MAX_N; i++)
+            cout << a[i] << " ";
+        cout << "\n";
+        for (int i = 0; i < MAX_N; i++) {
+            for (int j = 0; j < MAX_N; j++) {
+                cout << b[i][j] << " ";
+            }
+            cout << "\n";
+        }
+        return 0;
+    }               
+    ```
+
+
+
+## `memcpy()`와 `copy()`: 배열 혹은 벡터 초기화
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+vector<int> v{1, 2, 3};
+vector<int> ret(3);
+// copy: 벡터, 배열 모두 깊은 복사 가능
+// copy(원본 시작 iterator, 원본 끝 이터레이터(마지막 + 1), 복사받는 시작
+// 이터레이터);
+// 1. 벡터 copy
+copy(v.begin(), v.end(), ret.begin());
+for (int i : ret)
+    cout << i << " ";
+cout << "\n";
+ret[1] = 100;
+cout << "변경된 사본 벡터 1 인덱스 값: " << ret[1] << "\n";
+cout << "원본 벡터 1 인덱스 값: " << v[1] << "\n";
+
+// 2. 배열
+const int ARRAY_N = 3;
+int a[ARRAY_N] = {1, 2, 3};
+int retA[ARRAY_N];
+// copy(복사당할 배열 이름(시작 이터레이터), 복사당할 배열 끝 + 1, 복사할
+// 배열 이름(시작))
+copy(a, a + ARRAY_N, retA);
+for (int i : a)
+    cout << i << " ";
+cout << "\n";
+retA[1] = 10;
+cout << "변경된 사본 배열 1 인덱스 값: " << retA[1] << "\n";
+cout << "원본 배열 1 인덱스 값: " << v[1] << "\n";
+
+return 0;
+}
+```
