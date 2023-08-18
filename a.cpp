@@ -1,85 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
-// c/cpp는 함수 내 함수 선언은 불가하다.
-// vector<pair<int, int>>를 "내림차순:오름차순"으로 정렬하고 싶다면
-bool cmp(pair<int, int> a, pair<int, int> b) { return a.first > b.first; }
-
 int main() {
-    // 컨테이너들의 요소를 정렬하기: sort
-    // sort(): 보통 array or vector 정렬 시에 쓰임. O(nlogn)
-    // sort(first, last, *커스텀비교함수)
-    // - 커스텀비교함수
-    // 0. 기본은 오름차순(커스텀비교함수를 넣지 않았을 때)
-    // 1. greater<타입>()을 넣어 내림차순 변경 가능
-    // 2. less<타입>()을 넣어 오름차순 정렬
-    cout << "배열 정렬"
-         << "\n";
-    int b[5];
-    for (int i = 0; i < 5; i++) {
-        b[4 - i] = i;
-    }
-    for (int i = 0; i < 5; i++)
-        cout << b[i] << " ";
-    cout << "\n";
-    // 오름차순
-    sort(b, b + 5);
-    for (int i = 0; i < 5; i++)
-        cout << b[i] << " ";
-    cout << "\n";
-    // 내림차순
-    sort(b, b + 5, greater<int>());
-    for (int i = 0; i < 5; i++)
-        cout << b[i] << " ";
-    cout << "\n\n";
+    // unique: 앞 요소부터 바로 옆과 비교하여 중복 부분만 제거하면서 채워나가고,
+    // 나머지 자리에는 기존의 원소가 채워진다.
+    //
+    // unique(start, end) => 유니크한 요소 바로 다음 기존과 동일한 요소의 시작
+    // 이터레이터 반환
+    //
+    // O(n)
+    //
+    // vector.erase(시작, 끝): [시작, 끝) 범위가 삭제 이 두 함수를 통해 유니크한
+    // 벡터를 반환할 수 있다.
+    //
+    // unique는 바로 옆이랑만 비교하므로, 꼭 sort()로 정리한 후 시작하자.
 
-    cout << "벡터 정렬"
-         << "\n";
-    vector<int> v;
-    for (int i = 5; i >= 1; i--)
-        v.push_back(i);
-    for (int i : v)
+    // sort를 사용하지 않았을 때
+    vector<int> v1{4, 3, 3, 5, 1, 2, 3};
+    cout << "원본\n";
+    for (int i : v1)
         cout << i << " ";
     cout << "\n";
-    sort(v.begin(), v.end());
-    for (int i : v)
+    v1.erase(unique(v1.begin(), v1.end()), v1.end());
+    cout << "sort를 사용하지 않는다면\n";
+    for (int i : v1)
         cout << i << " ";
     cout << "\n";
-    sort(v.begin(), v.end(), greater<int>());
-    for (int i : v)
+    // sort 후
+    // v.erase(unique(v.begin(), v.end()), v.end());
+    vector<int> v2{4, 3, 3, 5, 1, 2, 3};
+    sort(v2.begin(), v2.end());
+    v2.erase(unique(v2.begin(), v2.end()), v2.end());
+    cout << "sort를 사용한다면\n";
+    for (int i : v2)
         cout << i << " ";
-    cout << "\n\n";
-
-    cout << "pair 기반 벡터"
-         << "\n";
-    vector<pair<int, int>> pairV;
-    for (int i = 10; i >= 1; i--)
-        pairV.push_back({i, 10 - i});
-    for (pair<int, int> i : pairV)
-        cout << i.first << ":" << i.second << " ";
-    cout << "\n";
-    sort(pairV.begin(), pairV.end());
-    for (auto i : pairV)
-        cout << i.first << ":" << i.second << " ";
     cout << "\n";
 
-    // {내림차순, 오름차순} 하고 싶다면?: cmp 함수를 만들어 넣자
-    sort(pairV.begin(), pairV.end(), cmp);
-    for (auto i : pairV)
-        cout << i.first << ":" << i.second << " ";
-    cout << "\n";
     return 0;
-    // 배열 정렬
-    // 4 3 2 1 0
-    // 0 1 2 3 4
-    // 4 3 2 1 0
-
-    // 벡터 정렬
-    // 5 4 3 2 1
-    // 1 2 3 4 5
-    // 5 4 3 2 1
-
-    // pair 기반 벡터
-    // 10:0 9:1 8:2 7:3 6:4 5:5 4:6 3:7 2:8 1:9
-    // 1:9 2:8 3:7 4:6 5:5 6:4 7:3 8:2 9:1 10:0
-    // 10:0 9:1 8:2 7:3 6:4 5:5 4:6 3:7 2:8 1:9
 }
