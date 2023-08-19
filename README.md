@@ -447,3 +447,56 @@ int main() {
     // 최소값의 인덱스는 0
 }
 ```
+
+# 자료구조
+## `vector`
+> `vector<타입> 변수명;`
+- 동적 배열
+- 컴파일 시점에 사용할 요소들의 개수를 모르면 vector를 써야 함
+- '연속된 메모리 공간'에 위치한 '같은 타입'의 요소들의 모음
+- 숫자 인덱스 기반으로 랜덤 접근 가능
+- 중복 허용
+- O(1): 탐색, 맨 뒤 요소 삭제 및 삽입
+- O(n): 그 외 요소 삭제 및 삽입
+
+### 함수([from,to))
+1. `push_back()`: 뒤에서부터 요소 더함
+2. `pop_back()`: 맨 뒤 요소 지움
+3. `erase()`: 한 요소만 지운다(`vector.erase(position)`), 범위를 지운다(`vector.erase(from, to)`)
+4. `find(from, to, value)`: 메서드 아님, STL 함수, 처음 찾는 요소를 가리키는 이터레이터 반환
+5. `clear()`: 모든 요소를 지움
+6. `fill(from, to, value)`: 일정 범위 혹은 전체 요소를 `value`로 초기화
+
+### 범위 기반 for 루프
+```cpp
+for(<컨데이너가 들어있는 타입>) 임시 변수명: 컨테이너)
+```
+
+### vector의 정적 할당
+- 크기가 0인 빈 vector가 아니라 특정 크기로 정해놓고 시작하고 싶을 때
+- 물론 크기 고정은 안된다
+```cpp
+vector<int> v(5, 100); // 크기를 5, 값은 100으로 초기화
+vector<int> v{10, 20, 30, 40, 50}; 
+```
+
+### 2차원 벡터
+- 3가지 방법이 있다
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+// 1. 타입으로 선언
+vector<vector<int>> v;                          
+// 2. 타입으로 선언 후 초기화까지
+vector<vector<int>> v2(10, vector<int>(10, 0)); 
+// 3. 1차원만 생성 후 이후 요소를 빈 배열로 채우기
+vector<int> v3[10]; 
+int main() {
+    for (int i = 0; i < 10; i++) {
+        // 빈 배열로 요소를 채우기
+        vector<int> temp;
+        v.push_back(temp);
+    }
+    return 0;
+}
+```
