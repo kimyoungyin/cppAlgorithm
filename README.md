@@ -7,7 +7,9 @@
 ## string: 문자열
 
 영어: 1글자 = 1바이트
+
 한글: 1글자 = 3바이트
+
 기본 메서드: `begin()`, `end()`, `size()`, `insert(위치, 문자열)`, `erase(위치, 크기)`. `pop_back()`, `find(문자열)`, `substr(위치, 크기)`, `reverse()`
 
 만들어야 하는 메서드: `split()`
